@@ -2,7 +2,7 @@
 
 本项目包括Python写的Zip工具
 
-1. 生成一个无线循环的Zip文件，或者称为Zip奎因
+1. 生成一个无限循环的Zip文件，或者称为Zip奎因
    输入：一个文件，文件大小需要限制在30KB以内。
    输出：一个Zip压缩包，解压该压缩包会生成两个文件：上面输入的文件，以及相同的Zip压缩包。
 
@@ -14,7 +14,7 @@ This project contains zip tools writed by Python.
 
 ## 使用方法 | Usage
 
-1. Generate Zip Quine:
+1. 生成无限循环的Zip文件 | Generate Zip Quine:
    ```
    python3 ./src/QuineGenerator.py out.zip test.txt
    ```
