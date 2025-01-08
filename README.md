@@ -15,7 +15,9 @@ This project contains zip tools writed by Python.
 ## 使用方法 | Usage
 
 1. Generate Zip Quine:
-   Cmd: python3 ./src/QuineGenerator.py out.zip test.txt
+   ```
+   python3 ./src/QuineGenerator.py out.zip test.txt
+   ```
 
 ## 引用 | Attribution
 
