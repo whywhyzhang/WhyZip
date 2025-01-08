@@ -339,7 +339,7 @@ class Element:
 
     def ToBinary(self, phId2Bytes={}) -> bytes:
         if self.type=="BYTES":
-            return self.attr;
+            return self.attr[0];
         if self.type=="PH":
             if isinstance(self.attr[1], int):
                 return phId2Bytes[self.attr[1]];

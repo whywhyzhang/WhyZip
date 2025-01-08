@@ -26,7 +26,8 @@ def GetCodes(prefixLen, suffixLen):
     tmp.attr=(*tmp.attr[:-1], tmp.ToElement());
     codes.append(tmp);
     codes.append(Util.Code("OP", 20, 20, 5));
-    codes.append(Util.Code("RAW", codes[-1].ToElement(), Util.Element("RAW", 20), codes[-1].ToElement(), Util.Element("RAW", 20)));
+    codes.append(Util.Code("RAW", codes[-1].ToElement(), Util.Element("RAW", 20),
+        codes[-1].ToElement(), Util.Element("RAW", 20)));
     codes.append(Util.Code("OP", 20, 20, 5));
 
     codes+=_solveSuffix(Util.Element("PH", suffixLen, 1));
@@ -88,7 +89,8 @@ def _solveSuffix(suffix : Util.Element):
         Util.Code("RAW"),
         Util.Code("RAW"),
     ];
-    codes.append(Util.Code("RAW", codes[-1].ToElement(), codes[-2].ToElement(), codes[-3].ToElement(), codes[-4].ToElement()));
+    codes.append(Util.Code("RAW", codes[-1].ToElement(), codes[-2].ToElement(),
+        codes[-3].ToElement(), codes[-4].ToElement()));
     return codes[::-1];
 
 ################################
