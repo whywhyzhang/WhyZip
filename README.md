@@ -12,6 +12,11 @@ This project contains zip tools writed by Python.
    Input: a file wanted to be included in this zip file, the file's size should less than 30KB
    Output: a zip file, decompress it will get 2 files: the input file, and the same zip file. 
 
+## 使用方法 | Usage
+
+1. Generate Zip Quine:
+   Cmd: python3 ./src/QuineGenerator.py out.zip test.txt
+
 ## 引用 | Attribution
 
 如下文章或项目在本项目中被引用，并基于文章的思路进行修改 | The following articles or projects was referenced and modified in this project

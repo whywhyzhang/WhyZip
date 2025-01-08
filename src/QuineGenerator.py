@@ -157,7 +157,7 @@ def QuineGenerate(fileName, includeFilePath):
     open(fileName.decode("utf-8"), "wb").write(data);
 
 def _findCrcOne(data, target, poses, L, R):
-    handle=ctypes.CDLL("./libSearchCRC.so");
+    handle=ctypes.CDLL(_findCrcMulti.soPath);
     handle.SearchCRC.argtypes=[ctypes.c_char_p, ctypes.c_int,
         ctypes.c_int*len(poses), ctypes.c_int,
         ctypes.c_uint32, ctypes.c_uint32, ctypes.c_uint32];
@@ -186,15 +186,19 @@ def _findCrcOne(data, target, poses, L, R):
 
 def _findCrcMulti(data, target):
     # compile SearchCRC.cpp to libSearchCRC.so
-    if not os.path.exists("./libSearchCRC.so"):
+    _findCrcMulti.cppPath=os.path.join(os.path.dirname(__file__), "SearchCRC.cpp");
+    _findCrcMulti.soPath=os.path.join(os.path.dirname(__file__), "libSearchCRC.so");
+    if not os.path.exists(_findCrcMulti.soPath):
+        assert os.path.exists(_findCrcMulti.cppPath);
         from shutil import which
         for cmd in ("cc", "gcc", "clang++", ""):
             if which(cmd):
                 break;
         if not cmd:
             raise Exception("Can't find c++ compiler");
-        os.system(cmd+" SearchCRC.cpp -fPIC -shared -o libSearchCRC.so -O3");
-        assert os.path.exists("./libSearchCRC.so");
+        os.system("{} {} -fPIC -shared -o {} -O3".format(
+            cmd, _findCrcMulti.cppPath, _findCrcMulti.soPath));
+        assert os.path.exists(_findCrcMulti.soPath);
 
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     poses=[m.start() for m in re.finditer(b"0000", data)];
